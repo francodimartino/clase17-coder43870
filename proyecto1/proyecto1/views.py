@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 import datetime
-from django.template import Template, Context
+from django.template import Template, Context, loader
+
 
 
 
@@ -21,15 +22,22 @@ def calcula_anio_nacimiento(request, edad):
     return HttpResponse(f"Usted nacio en el anio {anio_nacimiento}")
 
 
+# def probandoHtml(request):
+#     #cree contexto, por ahora vacio
+#     diccionario={"nombre":"Juan", "apellido":"Perez", "edad":30, "lista_de_notas":[1,9,5,4,7,8,2] }
+#     #abri archivo
+#     archivo=open(r"H:\CODERHOUSE\43870\clase17\proyecto1\plantillas\template1.html")
+#     #lei el contenido del archivo
+#     contenido=archivo.read()
+#     archivo.close()#cerre el archivo
+#     template=Template(contenido)#cree el template, con la clase de django
+#     contexto=Context(diccionario)#cree el contexto
+#     documento=template.render(contexto)#renderice el template con el contexto, mergee
+#     return HttpResponse(documento)
+
 def probandoHtml(request):
-    #cree contexto, por ahora vacio
-    diccionario={"nombre":"Juan", "apellido":"Perez", "edad":30}
-    #abri archivo
-    archivo=open(r"H:\CODERHOUSE\43870\clase17\proyecto1\plantillas\template1.html")
-    #lei el contenido del archivo
-    contenido=archivo.read()
-    archivo.close()#cerre el archivo
-    template=Template(contenido)#cree el template, con la clase de django
-    contexto=Context(diccionario)#cree el contexto
-    documento=template.render(contexto)#renderice el template con el contexto, mergee
+
+    diccionario={"nombre":"Juan", "apellido":"Perez", "edad":30, "lista_de_notas":[1,9,5,4,7,8,2] }
+    template=loader.get_template("template1.html")
+    documento=template.render(diccionario)
     return HttpResponse(documento)

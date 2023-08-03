@@ -10,9 +10,22 @@
     <h1>ESTA ES NUESTRA GRAN PRIMERA PLANTILLA HTML</h1>
     <p>ESTE ES EL CONTENIDO DE MI PARRAFO</p>
 
-    <p>Nombre: {{ nombre }}</p>
-    <p>Apellido: {{ apellido }}</p>
+    <p style="color:red">Nombre: {{ nombre }}</p>
+    <p style="color:blue">Apellido: {{ apellido }}</p>
     <p>Edad: {{ edad }}</p>
+    
+
+    <h3>lista de notas</h3>
+
+    {% for nota in lista_de_notas %}
+
+        {% if nota >= 6 %}
+        <p>Nota aprobada: {{ nota }}</p>
+        {% else %}
+        <p style="color:red">Nota reprobada: {{ nota }}</p>
+        {% endif %}
+
+    {% endfor %}
     
 </body>
 </html>
